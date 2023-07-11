@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Signals;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,11 +20,27 @@ namespace Common
         }
         public void Initialize()
         {
+            SubscribeSignals();
+
             CheckPlayerPrefs();
         }
         public void Dispose()
         {
-            
+            UnsubscribeSignals();
+        }
+
+        private void SubscribeSignals()
+        {
+            _signalBus.Subscribe<PauseSignal>(PauseGame);
+            _signalBus.Subscribe<UnpauseSignal>(UnpauseGame);
+            _signalBus.Subscribe<StartGameSignal>(StartGame);
+        }
+
+        private void UnsubscribeSignals()
+        {
+            _signalBus.Unsubscribe<PauseSignal>(PauseGame);
+            _signalBus.Unsubscribe<UnpauseSignal>(UnpauseGame);
+            _signalBus.Unsubscribe<StartGameSignal>(StartGame);
         }
 
         private void CheckPlayerPrefs()
@@ -31,6 +49,27 @@ namespace Common
                 _saveSystem.CreateNewData();
             else
                 _saveSystem.LoadData();
+        }
+
+        private async void StartGame()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            LoseGame();
+        }
+
+        private void PauseGame()
+        {
+
+        }
+
+        private void UnpauseGame()
+        {
+
+        }
+
+        private void LoseGame()
+        {
+            _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Lose));
         }
     }
 }
