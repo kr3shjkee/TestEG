@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3ffee5554c5cb4f8111e101ed26947, type: 3}
+  m_Name: SceneSOInstaller
+  m_EditorClassIdentifier: 
+  levelConfig: {fileID: 11400000, guid: 16832b58c8ad96146be5e521d3908128, type: 2}
+  bonusItemsConfig: {fileID: 11400000, guid: 78d518f686a456641bb767614312a972, type: 2}
