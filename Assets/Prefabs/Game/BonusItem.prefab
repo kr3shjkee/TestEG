@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3706322868010008384}
   - component: {fileID: 3706322868010008415}
+  - component: {fileID: 8476342503661112287}
   m_Layer: 0
   m_Name: BonusItem
   m_TagString: Untagged
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8476342503661112287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706322868010008385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1fd5162ec7bda41a7d31e5c34b0f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

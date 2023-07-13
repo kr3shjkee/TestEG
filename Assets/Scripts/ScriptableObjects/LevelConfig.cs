@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using AbstractClasses;
 using UnityEngine;
 
 namespace ScriptableObjects
@@ -7,9 +6,9 @@ namespace ScriptableObjects
     [CreateAssetMenu(fileName = "LevelConfig", menuName = "Configs/LevelConfig", order = 0)]
     public class LevelConfig : ScriptableObject
     {
-        [SerializeField] private GameObject startPart;
-        [SerializeField] private GameObject levelPart;
-        [SerializeField] private float partsForInit;
+        [SerializeField] private BasePart startPart;
+        [SerializeField] private BasePart levelPart;
+        [SerializeField] private int partsForInit;
 
         [SerializeField] private GameObject player;
         [SerializeField] private float upPower;
@@ -18,9 +17,14 @@ namespace ScriptableObjects
         [SerializeField] private float speedMultiplier;
         [SerializeField] private int partsForSpeedUp;
 
-        public GameObject StartPart => startPart;
-        public GameObject LevelPart => levelPart;
-        public float PartsForInit => partsForInit;
+        [SerializeField] private float damagePosMinY;
+        [SerializeField] private float damagePosMaxY;
+
+        [SerializeField] private Vector2[] bonusPositions;
+
+        public BasePart StartPart => startPart;
+        public BasePart LevelPart => levelPart;
+        public int PartsForInit => partsForInit;
 
         public GameObject Player => player;
         public float UpPower => upPower;
@@ -28,6 +32,11 @@ namespace ScriptableObjects
         public float LevelSpeed => levelSpeed;
         public float SpeedMultiplier => speedMultiplier;
         public int PartsForSpeedUp => partsForSpeedUp;
+
+        public float DamagePosMinY => damagePosMinY;
+        public float DamagePosMaxY => damagePosMaxY;
+
+        public Vector2[] BonusPositions => bonusPositions;
 
     }
 }

@@ -1,6 +1,5 @@
 using Common;
 using Signals;
-using UnityEngine;
 using Zenject;
 
 public class ProjectMonoInstaller : MonoInstaller
@@ -10,7 +9,6 @@ public class ProjectMonoInstaller : MonoInstaller
         SignalBusInstaller.Install(Container);
         BindSignals();
 
-        Container.BindInterfacesAndSelfTo<GameManager>().AsSingle().NonLazy();
         Container.Bind<SaveSystem>().AsSingle().NonLazy();   
     }
 
@@ -21,5 +19,7 @@ public class ProjectMonoInstaller : MonoInstaller
         Container.DeclareSignal<PauseSignal>();
         Container.DeclareSignal<UnpauseSignal>();
         Container.DeclareSignal<StartGameSignal>();
+        Container.DeclareSignal<LoseGameSignal>();
+        Container.DeclareSignal<ScoreChangedSignal>(); 
     }
 }

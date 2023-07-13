@@ -202,6 +202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiControllerPrefab: {fileID: 1314432671038091132, guid: 5cc9930be94ad5a4d85f8bffd1dacfad, type: 3}
+  levelPartPrefab: {fileID: 8163292294598014721, guid: e243ed2ddfda54740b46f489fdbf8e08, type: 3}
+  levelControllerPrefab: {fileID: 5131563489667785357, guid: cf187046b2c5d9c48b26cfdcd5c1bc73, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
