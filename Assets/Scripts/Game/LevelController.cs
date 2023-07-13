@@ -38,8 +38,14 @@ namespace Game
                 {
                     _levelParts.Add(CreateLevelPart());
                     _levelParts[i].gameObject.transform.position = _levelParts[i - 1].gameObject.transform.position + new Vector3(_levelParts[i - 1].PartHeidth, 0f, 0f);
+                    _levelParts[i].Init();
                 }
             }
+        }
+
+        public void InitPlayer()
+        {
+
         }
 
         public void StartGame()

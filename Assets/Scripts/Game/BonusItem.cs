@@ -5,19 +5,19 @@ namespace Game
 {
     public class BonusItem : MonoBehaviour
     {
-        private SpriteRenderer spr;
-        private string name;
-        private int score;
+        [SerializeField] private SpriteRenderer spr;
+        private string _name;
+        private int _score;
 
         public SpriteRenderer Spr => spr;
-        public string Name => name;
-        public int Score => score;
+        public string Name => _name;
+        public int Score => _score;
 
         public void Init(ItemConfig config)
         {
             spr.sprite = config.Spr;
-            name = config.Name;
-            score = config.Score;
+            _name = config.Name;
+            _score = config.Score;
         }
     }
 }

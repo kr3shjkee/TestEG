@@ -31,7 +31,7 @@ namespace Game
             _bonusItemsConfig = bonusItemsConfig;
         }
 
-        public void Init()
+        public override void Init()
         {
             damageElement.transform.localPosition = _damageLocalPos.LocalPosition;
             bonusItem.transform.localPosition = _bonusItemLocalPos.LocalPosition;

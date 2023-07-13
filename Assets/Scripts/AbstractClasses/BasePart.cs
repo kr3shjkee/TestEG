@@ -7,6 +7,11 @@ namespace AbstractClasses
         [SerializeField] protected float partHeidth;
 
         public float PartHeidth => partHeidth;
+
+        public virtual void Init()
+        {
+
+        }
     }
 }
 
