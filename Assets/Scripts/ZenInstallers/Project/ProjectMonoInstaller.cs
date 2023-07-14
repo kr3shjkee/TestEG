@@ -20,6 +20,7 @@ public class ProjectMonoInstaller : MonoInstaller
         Container.DeclareSignal<UnpauseSignal>();
         Container.DeclareSignal<StartGameSignal>();
         Container.DeclareSignal<LoseGameSignal>();
-        Container.DeclareSignal<ScoreChangedSignal>(); 
+        Container.DeclareSignal<ScoreChangedSignal>();
+        Container.DeclareSignal<FinishTriggerSignal>();
     }
 }

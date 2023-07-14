@@ -56,19 +56,21 @@ namespace Game
                 _saveSystem.LoadData();
         }
 
-        private async void StartGame()
+        private void StartGame()
         {
             _levelController.InitLevel();
+            _levelController.InitPlayer();
+            _levelController.StartGame();
         }
 
         private void PauseGame()
         {
-
+            _levelController.PauseGame();
         }
 
         private void UnpauseGame()
         {
-
+            _levelController.StartGame();
         }
 
         private void LoseGame()

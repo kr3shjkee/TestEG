@@ -15,9 +15,9 @@ MonoBehaviour:
   startPart: {fileID: 7806578550135685743, guid: fd4c6bf8f56cedd4c8ece5ddfe166b8b, type: 3}
   levelPart: {fileID: 8163292294598014721, guid: e243ed2ddfda54740b46f489fdbf8e08, type: 3}
   partsForInit: 3
-  player: {fileID: 7122707545946009015, guid: 68a4664ed7622654bbb2c18120d34862, type: 3}
+  player: {fileID: 2860278892368892369, guid: 68a4664ed7622654bbb2c18120d34862, type: 3}
   upPower: 5
-  levelSpeed: 2
+  levelSpeed: 1.2
   speedMultiplier: 1
   partsForSpeedUp: 3
   damagePosMinY: -2

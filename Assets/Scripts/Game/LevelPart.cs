@@ -8,7 +8,7 @@ namespace Game
 {
     public class LevelPart : BasePart
     {
-        public class Factory : PlaceholderFactory<DamagePosition, BonusItemPosition, LevelPart>
+        public class Factory : PlaceholderFactory<DamagePosition, BonusItemPosition, PartPosition, LevelPart>
         {
 
         }
@@ -24,11 +24,12 @@ namespace Game
 
 
         [Inject]
-        public void Construct(DamagePosition damagePosition, BonusItemPosition bonusItemPosition, BonusItemsConfig bonusItemsConfig)
+        public void Construct(DamagePosition damagePosition, BonusItemPosition bonusItemPosition, BonusItemsConfig bonusItemsConfig, PartPosition position)
         {
             _damageLocalPos = damagePosition;
             _bonusItemLocalPos = bonusItemPosition;
             _bonusItemsConfig = bonusItemsConfig;
+            this.gameObject.transform.position = position.LocalPosition;
         }
 
         public override void Init()

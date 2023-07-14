@@ -12,6 +12,11 @@ namespace AbstractClasses
         {
 
         }
+
+        public virtual void DestroySelf()
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

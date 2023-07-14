@@ -1,4 +1,5 @@
 using AbstractClasses;
+using Game;
 using UnityEngine;
 
 namespace ScriptableObjects
@@ -10,7 +11,7 @@ namespace ScriptableObjects
         [SerializeField] private BasePart levelPart;
         [SerializeField] private int partsForInit;
 
-        [SerializeField] private GameObject player;
+        [SerializeField] private PlayerController player;
         [SerializeField] private float upPower;
 
         [SerializeField] private float levelSpeed;
@@ -26,7 +27,7 @@ namespace ScriptableObjects
         public BasePart LevelPart => levelPart;
         public int PartsForInit => partsForInit;
 
-        public GameObject Player => player;
+        public PlayerController Player => player;
         public float UpPower => upPower;
 
         public float LevelSpeed => levelSpeed;
