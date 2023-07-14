@@ -14,6 +14,7 @@ namespace Game
         private SignalBus _signalBus;
         private SaveSystem _saveSystem;
         private LevelController _levelController;
+        private int _score;
 
         public GameManager(SignalBus signaslBus, SaveSystem saveSystem, LevelController levelController)
         {
@@ -38,6 +39,7 @@ namespace Game
             _signalBus.Subscribe<UnpauseSignal>(UnpauseGame);
             _signalBus.Subscribe<StartGameSignal>(StartGame);
             _signalBus.Subscribe<LoseGameSignal>(LoseGame);
+            _signalBus.Subscribe<ScoreChangedSignal>(ChangeScore);
         }
 
         private void UnsubscribeSignals()
@@ -46,6 +48,7 @@ namespace Game
             _signalBus.Unsubscribe<UnpauseSignal>(UnpauseGame);
             _signalBus.Unsubscribe<StartGameSignal>(StartGame);
             _signalBus.Unsubscribe<LoseGameSignal>(LoseGame);
+            _signalBus.Unsubscribe<ScoreChangedSignal>(ChangeScore);
         }
 
         private void CheckPlayerPrefs()
@@ -61,6 +64,7 @@ namespace Game
             _levelController.InitLevel();
             _levelController.InitPlayer();
             _levelController.StartGame();
+            _score = 0;
         }
 
         private void PauseGame()
@@ -75,8 +79,26 @@ namespace Game
 
         private void LoseGame()
         {
+            CheckScore();
             _saveSystem.SaveData();
             _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Lose));
+        }
+
+        private void ChangeScore(ScoreChangedSignal signal)
+        {
+            _score += signal.Score;
+        }
+
+        private void CheckScore()
+        {
+            if(_saveSystem.Data.BestScore>= _score)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

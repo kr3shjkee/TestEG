@@ -1,3 +1,4 @@
+using DG.Tweening;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace Game
 {
     public class BonusItem : MonoBehaviour
     {
+        private const float SCALE_TIME = 0.5f;
+
         [SerializeField] private SpriteRenderer spr;
         private string _name;
         private int _score;
@@ -18,6 +21,11 @@ namespace Game
             spr.sprite = config.Spr;
             _name = config.Name;
             _score = config.Score;
+        }
+
+        public void DestroySelf()
+        {
+            gameObject.transform.DOScale(Vector3.zero, SCALE_TIME);
         }
     }
 }
