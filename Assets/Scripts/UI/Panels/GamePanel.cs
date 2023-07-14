@@ -19,6 +19,8 @@ namespace Ui.Panels
         [SerializeField] private Image itemSpr;
         [SerializeField] private GameObject itemInfoObj;
 
+        private int _score = 0;
+
         private void Start()
         {
             _signalBus.Subscribe<ScoreChangedSignal>(ShowItemInfo);
@@ -36,10 +38,20 @@ namespace Ui.Panels
         public override async UniTask OnUnactive()
         {
             _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Main));
+            _score = 0;
+            ChangeScore();
+        }
+
+        private void ChangeScore()
+        {
+            scoreText.text = _score.ToString();
         }
 
         private async void ShowItemInfo(ScoreChangedSignal signal)
         {
+            _score += signal.Score;
+            ChangeScore();
+
             itemInfoObj.SetActive(true);
             itemSpr.sprite = signal.Spr;
             itemText.text = signal.Name;

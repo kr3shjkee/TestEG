@@ -85,8 +85,11 @@ namespace Game
             else if(collision.gameObject.GetComponent<BonusItem>())
             {
                 var item = collision.gameObject.GetComponent<BonusItem>();
-                _signalBus.Fire(new ScoreChangedSignal(item.Score, item.Spr.sprite, item.Name));
-                item.DestroySelf();
+                if(item.IsActive)
+                {
+                    _signalBus.Fire(new ScoreChangedSignal(item.Score, item.Spr.sprite, item.Name));
+                    item.DestroySelf();
+                }
             }
         }
     }

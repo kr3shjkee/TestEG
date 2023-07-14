@@ -11,6 +11,8 @@ namespace Game
         [SerializeField] private SpriteRenderer spr;
         private string _name;
         private int _score;
+        private bool _isActive = true;
+        public bool IsActive => _isActive;
 
         public SpriteRenderer Spr => spr;
         public string Name => _name;
@@ -25,6 +27,7 @@ namespace Game
 
         public void DestroySelf()
         {
+            _isActive = false;
             gameObject.transform.DOScale(Vector3.zero, SCALE_TIME);
         }
     }
