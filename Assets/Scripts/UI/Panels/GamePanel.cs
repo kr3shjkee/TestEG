@@ -33,13 +33,13 @@ namespace Ui.Panels
         public override async UniTask OnActive()
         {
             _signalBus.Fire<StartGameSignal>();
+            _score = 0;
+            ChangeScore();
         }
 
         public override async UniTask OnUnactive()
         {
             _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Main));
-            _score = 0;
-            ChangeScore();
         }
 
         private void ChangeScore()

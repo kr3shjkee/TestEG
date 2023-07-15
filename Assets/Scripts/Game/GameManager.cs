@@ -27,6 +27,7 @@ namespace Game
             SubscribeSignals();
 
             CheckPlayerPrefs();
+            _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Main));
         }
         public void Dispose()
         {
@@ -81,7 +82,8 @@ namespace Game
         {
             CheckScore();
             _saveSystem.SaveData();
-            _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Lose));
+            _levelController.PauseGame();
+            
         }
 
         private void ChangeScore(ScoreChangedSignal signal)
@@ -93,11 +95,12 @@ namespace Game
         {
             if(_saveSystem.Data.BestScore>= _score)
             {
-
+                _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Lose, _score, _saveSystem.Data.BestScore, false));
             }
             else
             {
-
+                _saveSystem.Data.BestScore = _score;
+                _signalBus.Fire(new OpenPanelSignal(Enums.PanelsEnum.Lose, _score, _saveSystem.Data.BestScore, true));
             }
         }
     }

@@ -52,6 +52,17 @@ public class UiController : MonoBehaviour
         {
             _signalBus.Fire<PauseSignal>();
         }
+        else if(signal.Panel == Enums.PanelsEnum.Lose)
+        {
+            if(signal.IsNewBest)
+            {
+                panel.BestScore(signal.BestScore);
+            }
+            else
+            {
+                panel.CurrentScore(signal.CurrentScore, signal.BestScore);
+            }
+        }
         panel.gameObject.SetActive(true);
         await panel.OnActive();
     }

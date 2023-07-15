@@ -92,6 +92,14 @@ namespace Game
                 }
             }
         }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(collision.gameObject.GetComponent<DamageElement>())
+            {
+                _signalBus.Fire<LoseGameSignal>();
+            }
+        }
     }
 }
 
