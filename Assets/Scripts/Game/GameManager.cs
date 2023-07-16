@@ -62,6 +62,11 @@ namespace Game
 
         private void StartGame()
         {
+            if(_levelController.LevelParts != null)
+            {
+                _levelController.ClearLevel();
+            }
+            
             _levelController.InitLevel();
             _levelController.InitPlayer();
             _levelController.StartGame();

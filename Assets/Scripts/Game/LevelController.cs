@@ -18,6 +18,8 @@ namespace Game
         private List<BasePart> _levelParts;
         private PlayerController _player;
 
+        public List<BasePart> LevelParts => _levelParts;
+
         [Inject]
         public void Construct(SignalBus signalBus, LevelConfig levelConfig, LevelPart.Factory factory, PlayerController player)
         {
@@ -66,16 +68,24 @@ namespace Game
         public void StartGame()
         {
             _isPause = false;
+            _player.IsGravity(true);
+            _player.IsPause(false);
         }
 
         public void PauseGame()
         {
             _isPause = true;
+            _player.IsGravity(false);
+            _player.IsPause(true);
         }
 
         public void ClearLevel()
         {
-
+            for(int i=0; i<_levelParts.Count;i++)
+            {
+                _levelParts[i].DestroySelf();
+            }
+            _levelParts.Clear();
         }
 
         private BasePart CreateLevelPart(Vector2 pos)
