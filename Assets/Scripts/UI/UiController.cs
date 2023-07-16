@@ -12,6 +12,7 @@ public class UiController : MonoBehaviour
     private BasePanel[] _panels;
     private SignalBus _signalBus;
     private SaveSystem _saveSystem;
+    private bool _isStart;
 
     [Inject]
     public void Construct(SignalBus signalBus, SaveSystem saveSystem)
@@ -71,7 +72,15 @@ public class UiController : MonoBehaviour
     {
         var panel = _panels.FirstOrDefault(panel => panel.CurrentPanel == signal.Panel);
 
+        if(signal.Panel == Enums.PanelsEnum.Option)
+            _signalBus.Fire(new UnpauseSignal(_isStart));
+
         await panel.OnUnactive();
         panel.gameObject.SetActive(false);
+    }
+
+    public void CheckGame(bool isStart)
+    {
+        _isStart = isStart;
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace AbstractClasses
 {
@@ -6,6 +7,13 @@ namespace AbstractClasses
     {
         [SerializeField] protected float partHeidth;
 
+        protected SignalBus _signalBus;
+
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
         public float PartHeidth => partHeidth;
 
         public virtual void Init()

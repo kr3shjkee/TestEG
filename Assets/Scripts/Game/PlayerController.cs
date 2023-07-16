@@ -77,8 +77,11 @@ namespace Game
             _animator.enabled = false;
         }
 
-        private void Unpause()
+        private void Unpause(UnpauseSignal signal)
         {
+            if (!signal.IsStart)
+                return;
+
             _body.simulated = true;
             _isPause = false;
             _animator.enabled = true;

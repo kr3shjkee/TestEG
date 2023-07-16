@@ -1,4 +1,5 @@
 using AbstractClasses;
+using Signals;
 using UnityEngine;
 
 namespace Game
@@ -8,6 +9,17 @@ namespace Game
         private bool _isPause = false;
         public bool _isStart = false;
 
+        private void Start()
+        {
+            _signalBus.Subscribe<PauseSignal>(Pause);
+            _signalBus.Subscribe<UnpauseSignal>(Unpause);
+        }
+
+        private void OnDestroy()
+        {
+            _signalBus.Unsubscribe<PauseSignal>(Pause);
+            _signalBus.Unsubscribe<UnpauseSignal>(Unpause);
+        }
         public override void Init()
         {
             base.Init();
@@ -23,12 +35,12 @@ namespace Game
             }           
         }
 
-        public void Pause()
+        private void Pause()
         {
             _isPause = true;
         }
 
-        public void Unpause()
+        private void Unpause()
         {
             _isPause = false;
         }

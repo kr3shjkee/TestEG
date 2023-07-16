@@ -14,13 +14,16 @@ namespace Game
         private SignalBus _signalBus;
         private SaveSystem _saveSystem;
         private LevelController _levelController;
+        private UiController _uiController;
         private int _score;
+        private bool _isStart = false;
 
-        public GameManager(SignalBus signaslBus, SaveSystem saveSystem, LevelController levelController)
+        public GameManager(SignalBus signaslBus, SaveSystem saveSystem, LevelController levelController, UiController uiController)
         {
             _signalBus = signaslBus;
             _saveSystem = saveSystem;
             _levelController = levelController;
+            _uiController = uiController;
         }
         public void Initialize()
         {
@@ -66,11 +69,13 @@ namespace Game
             {
                 _levelController.ClearLevel();
             }
-            
+            _uiController.CheckGame(_isStart);
             _levelController.InitLevel();
             _levelController.InitPlayer();
             _levelController.StartGame();
             _score = 0;
+            _isStart = true;
+            
         }
 
         private void PauseGame()
@@ -78,8 +83,10 @@ namespace Game
             _levelController.PauseGame();
         }
 
-        private void UnpauseGame()
+        private void UnpauseGame(UnpauseSignal signal)
         {
+            if (!_isStart)
+                return;
             _levelController.StartGame();
         }
 
@@ -88,7 +95,8 @@ namespace Game
             CheckScore();
             _saveSystem.SaveData();
             _levelController.PauseGame();
-            
+            _isStart = false;
+            _uiController.CheckGame(_isStart);
         }
 
         private void ChangeScore(ScoreChangedSignal signal)

@@ -108,7 +108,7 @@ namespace Game
 
         private void FixedUpdate()
         {
-            if(!_isPause)
+            if(!_isPause && _levelParts!=null)
             {
                 for(int i = 0; i<_levelParts.Count;i++)
                 {

@@ -22,7 +22,7 @@ namespace Ui.Panels
 
         public override async UniTask OnUnactive()
         {
-            _signalBus.Fire<UnpauseSignal>();
+            
         }
 
         public void CheckboxChanged()
