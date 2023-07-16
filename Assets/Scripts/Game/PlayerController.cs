@@ -42,18 +42,20 @@ namespace Game
         }
         private void Update()
         {
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && !_isPause)
             {
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
                 {
                     _body.AddForce(Vector2.up * _upPower, ForceMode2D.Impulse);
+                    _signalBus.Fire(new PushSoundSignal(Enums.SoundsEnum.Fly));
                 }
             }
 
             if (Input.GetMouseButtonDown(0) && !_isPause)
             {
                 _body.AddForce(Vector2.up * _upPower, ForceMode2D.Impulse);
+                _signalBus.Fire(new PushSoundSignal(Enums.SoundsEnum.Fly));
             }
         }
 
@@ -73,7 +75,6 @@ namespace Game
             _body.simulated = false;
             _isPause = true;
             _animator.enabled = false;
-            //_animator.speed = 0;
         }
 
         private void Unpause()
@@ -81,7 +82,6 @@ namespace Game
             _body.simulated = true;
             _isPause = false;
             _animator.enabled = true;
-            //_animator.speed = 1;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -97,6 +97,7 @@ namespace Game
                 {
                     _signalBus.Fire(new ScoreChangedSignal(item.Score, item.Spr.sprite, item.Name));
                     item.DestroySelf();
+                    _signalBus.Fire(new PushSoundSignal(Enums.SoundsEnum.Collect));
                 }
             }
         }
@@ -105,6 +106,7 @@ namespace Game
         {
             if(collision.gameObject.GetComponent<DamageElement>())
             {
+                _signalBus.Fire(new PushSoundSignal(Enums.SoundsEnum.Damage));
                 _signalBus.Fire<LoseGameSignal>();
             }
         }
