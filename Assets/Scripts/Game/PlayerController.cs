@@ -7,11 +7,13 @@ namespace Game
 {
     public class PlayerController : MonoBehaviour
     {
+
         private float _upPower;
         private bool _isPause;
         private Rigidbody2D _body;
         private SignalBus _signalBus;
         private LevelConfig _config;
+        private Animator _animator;
 
         [Inject]
         public void Construct(LevelConfig config, SignalBus signalBus)
@@ -22,6 +24,7 @@ namespace Game
         private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
             _upPower = _config.UpPower;
             _isPause = true;
         }
@@ -62,18 +65,23 @@ namespace Game
         public void IsPause(bool isPause)
         {
             _isPause = isPause;
+            _animator.enabled = !isPause;
         }
 
         private void Pause()
         {
             _body.simulated = false;
             _isPause = true;
+            _animator.enabled = false;
+            //_animator.speed = 0;
         }
 
         private void Unpause()
         {
             _body.simulated = true;
             _isPause = false;
+            _animator.enabled = true;
+            //_animator.speed = 1;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
