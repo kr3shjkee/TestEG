@@ -17,6 +17,8 @@ namespace Game
         private LevelPart.Factory _factory;
         private List<BasePart> _levelParts;
         private PlayerController _player;
+        private double _partsCount;
+        private float _levelSpeed;
 
         public List<BasePart> LevelParts => _levelParts;
 
@@ -41,6 +43,8 @@ namespace Game
 
         public void InitLevel()
         {
+            _partsCount = 0;
+            _levelSpeed = _levelConfig.LevelSpeed;
             _levelParts = new List<BasePart>();
             for(int i=0; i< _levelConfig.PartsForInit; i++)
             {
@@ -104,6 +108,7 @@ namespace Game
             var partForLose = _levelParts[0];
             _levelParts.Remove(_levelParts[0]);
             partForLose.DestroySelf();
+            CheckPartCount();
         }
 
         private void FixedUpdate()
@@ -113,8 +118,21 @@ namespace Game
                 for(int i = 0; i<_levelParts.Count;i++)
                 {
                     _levelParts[i].gameObject.transform.position = Vector3.MoveTowards(_levelParts[i].transform.position, 
-                        new Vector3(-_levelParts[i].PartHeidth, 0), Time.fixedDeltaTime * _levelConfig.LevelSpeed);         
+                        new Vector3(-_levelParts[i].PartHeidth, 0), Time.fixedDeltaTime * _levelSpeed);         
                 }
+            }
+        }
+
+        private void CheckPartCount()
+        {
+            if (_levelConfig.SpeedMultiplier == 1)
+                return;
+
+            _partsCount++;
+            double partsForSpeedUp = (double)_levelConfig.PartsForSpeedUp;
+            if(_partsCount % partsForSpeedUp == 0)
+            {
+                _levelSpeed = _levelSpeed * _levelConfig.SpeedMultiplier;
             }
         }
     }

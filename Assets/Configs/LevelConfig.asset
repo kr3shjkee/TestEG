@@ -18,7 +18,7 @@ MonoBehaviour:
   player: {fileID: 2860278892368892369, guid: 68a4664ed7622654bbb2c18120d34862, type: 3}
   upPower: 5
   levelSpeed: 1.2
-  speedMultiplier: 1
+  speedMultiplier: 1.5
   partsForSpeedUp: 3
   damagePosMinY: -2
   damagePosMaxY: 3

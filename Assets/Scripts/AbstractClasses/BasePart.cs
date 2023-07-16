@@ -3,18 +3,18 @@ using Zenject;
 
 namespace AbstractClasses
 {
-    abstract public class BasePart : MonoBehaviour
+    public abstract class BasePart : MonoBehaviour
     {
         [SerializeField] protected float partHeidth;
 
         protected SignalBus _signalBus;
+        public float PartHeidth => partHeidth;
 
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
-        }
-        public float PartHeidth => partHeidth;
+        } 
 
         public virtual void Init()
         {

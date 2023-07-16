@@ -1,10 +1,6 @@
 using Common;
-using Cysharp.Threading.Tasks;
 using Signals;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 namespace Game
@@ -27,6 +23,7 @@ namespace Game
         }
         public void Initialize()
         {
+
             SubscribeSignals();
 
             CheckPlayerPrefs();
