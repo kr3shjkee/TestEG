@@ -18,9 +18,13 @@ namespace Game
         {
             if(_isStart)
             {
-                this.transform.position = Vector3.MoveTowards(this.transform.position,
-                        new Vector3(-partHeidth, 0), Time.fixedDeltaTime * 1.2f);
+                transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(-partHeidth, 0), Time.fixedDeltaTime * 1.2f);
             }           
+        }
+
+        public override void DestroySelf()
+        {
+            base.DestroySelf();
         }
 
     }

@@ -105,9 +105,9 @@ namespace Game
         private void CreateNewPart()
         {
             _levelParts.Add(CreateLevelPart(_levelParts[_levelParts.Count - 1].gameObject.transform.position + new Vector3(_levelParts[_levelParts.Count - 1].PartHeidth,0,0)));
-            var partForLose = _levelParts[0];
+            BasePart partForDestroy = _levelParts[0];
             _levelParts.Remove(_levelParts[0]);
-            partForLose.DestroySelf();
+            partForDestroy.DestroySelf();
             CheckPartCount();
         }
 
