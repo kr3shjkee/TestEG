@@ -8,10 +8,7 @@ namespace Game
 {
     public class LevelPart : BasePart
     {
-        public class Factory : PlaceholderFactory<DamagePosition, BonusItemPosition, PartPosition, LevelPart>
-        {
 
-        }
 
 
         [SerializeField] private GameObject damageElement;

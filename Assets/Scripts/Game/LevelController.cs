@@ -14,8 +14,8 @@ namespace Game
 
         private SignalBus _signalBus;
         private LevelConfig _levelConfig;
-        private LevelPart.Factory _levelPartFactory;
-        private StartPart.Factory _startPartFactory;
+        private BasePart.LevelPartFactory _levelPartFactory;
+        private BasePart.StartPartFactory _startPartFactory;
         private List<BasePart> _levelParts;
         private PlayerController _player;
         private double _partsCount;
@@ -24,7 +24,7 @@ namespace Game
         public List<BasePart> LevelParts => _levelParts;
 
         [Inject]
-        public void Construct(SignalBus signalBus, LevelConfig levelConfig, LevelPart.Factory levelPartFactory, StartPart.Factory startPartFactory, PlayerController player)
+        public void Construct(SignalBus signalBus, LevelConfig levelConfig, BasePart.LevelPartFactory levelPartFactory, BasePart.StartPartFactory startPartFactory, PlayerController player)
         {
             _signalBus = signalBus;
             _levelConfig = levelConfig;
@@ -52,7 +52,7 @@ namespace Game
             {
                 if (i == 0)
                 {
-                    StartPart startPart = _startPartFactory.Create(new PartPosition(Vector2.zero));
+                    BasePart startPart = _startPartFactory.Create(new PartPosition(Vector2.zero));
                     _levelParts.Add(startPart);                  
                 }
                 else

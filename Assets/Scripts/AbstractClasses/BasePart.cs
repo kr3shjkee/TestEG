@@ -1,3 +1,4 @@
+using Game;
 using UnityEngine;
 using Zenject;
 
@@ -5,6 +6,16 @@ namespace AbstractClasses
 {
     public abstract class BasePart : MonoBehaviour
     {
+        public class StartPartFactory : PlaceholderFactory<PartPosition, BasePart>
+        {
+
+        }
+
+        public class LevelPartFactory : PlaceholderFactory<DamagePosition, BonusItemPosition, PartPosition, BasePart>
+        {
+
+        }
+
         [SerializeField] protected float partHeidth;
 
         protected SignalBus _signalBus;
