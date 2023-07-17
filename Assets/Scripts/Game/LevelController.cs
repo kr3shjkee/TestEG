@@ -14,7 +14,8 @@ namespace Game
 
         private SignalBus _signalBus;
         private LevelConfig _levelConfig;
-        private LevelPart.Factory _factory;
+        private LevelPart.Factory _levelPartFactory;
+        private StartPart.Factory _startPartFactory;
         private List<BasePart> _levelParts;
         private PlayerController _player;
         private double _partsCount;
@@ -23,11 +24,12 @@ namespace Game
         public List<BasePart> LevelParts => _levelParts;
 
         [Inject]
-        public void Construct(SignalBus signalBus, LevelConfig levelConfig, LevelPart.Factory factory, PlayerController player)
+        public void Construct(SignalBus signalBus, LevelConfig levelConfig, LevelPart.Factory levelPartFactory, StartPart.Factory startPartFactory, PlayerController player)
         {
             _signalBus = signalBus;
             _levelConfig = levelConfig;
-            _factory = factory;
+            _levelPartFactory = levelPartFactory;
+            _startPartFactory = startPartFactory;
             _player = player;
         }
 
@@ -50,10 +52,8 @@ namespace Game
             {
                 if (i == 0)
                 {
-                    _levelParts.Add(_levelConfig.StartPart);
-                    _levelParts[0].gameObject.transform.position = Vector3.zero;
-                    Instantiate(_levelParts[0]);
-                    
+                    StartPart startPart = _startPartFactory.Create(new PartPosition(Vector2.zero));
+                    _levelParts.Add(startPart);                  
                 }
                 else
                 {
@@ -94,7 +94,7 @@ namespace Game
 
         private BasePart CreateLevelPart(Vector2 pos)
         {
-            BasePart part = _factory.Create(
+            BasePart part = _levelPartFactory.Create(
                 new DamagePosition(new Vector2(0f, Random.Range(_levelConfig.DamagePosMinY, _levelConfig.DamagePosMaxY))),
                 new BonusItemPosition(_levelConfig.BonusPositions[Random.Range(0, _levelConfig.BonusPositions.Length)]),
                 new PartPosition(pos));

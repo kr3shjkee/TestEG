@@ -36,6 +36,9 @@ namespace Common
 
         private void CheckSave()
         {
+            if (_saveSystem.CheckOnNewProfile())
+                return;
+
             _saveSystem.LoadData();
             if (_saveSystem.Data.IsSound)
                 sound.SetActive(true);

@@ -1,32 +1,20 @@
 using AbstractClasses;
-using Signals;
-using UnityEngine;
+using Zenject;
 
 namespace Game
 {
     public class StartPart : BasePart
     {
-        public bool _isStart = false;
-
-        public override void Init()
+        public class Factory : PlaceholderFactory<PartPosition, StartPart>
         {
-            base.Init();
-            _isStart = true;
+
         }
 
-        private void FixedUpdate()
+        [Inject]
+        public void Construct(PartPosition position)
         {
-            if(_isStart)
-            {
-                transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(-partHeidth, 0), Time.fixedDeltaTime * 1.2f);
-            }           
+            this.gameObject.transform.position = position.LocalPosition;
         }
-
-        public override void DestroySelf()
-        {
-            base.DestroySelf();
-        }
-
     }
 }
 
