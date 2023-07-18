@@ -1,8 +1,10 @@
 using AbstractClasses;
+using UnityEngine;
 using Zenject;
 
 namespace Game
 {
+    [AddComponentMenu("Game/BasePart/StartPart")]
     public class StartPart : BasePart
     {
 

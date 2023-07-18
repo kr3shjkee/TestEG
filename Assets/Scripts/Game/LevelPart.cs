@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Game
 {
+    [AddComponentMenu("Game/BasePart/LevelPart")]
     public class LevelPart : BasePart
     {
 
